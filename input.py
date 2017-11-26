@@ -5,7 +5,7 @@ import random
 def getparameter():
     ins='f'
     while ins!='d'and ins!='s'and ins!='q':
-        ins=input("-use default file, input d\n-use your parameter,input s\n-input q to exit\n")
+        ins=raw_input("-use default file, input d\n-use your parameter,input s\n-input q to exit\n")
         if ins=='d':
             dff=open("defaultset.txt","r")
             numofevents,proportion,maxD,maxT=[int(x)for x in next(dff).split( )]
@@ -33,10 +33,12 @@ def geteventlist():
     eventlist =[]
 
     for i in range(1, paralist[0]):
-        if random.randint(0,10000)<(10000*(1/(paralist[1]+1))):
+
+        if (random.randint(0,10000))<(10000/(paralist[1]+1)):
             eventlist.append( class_WR.events(1, paralist[2], paralist[3]))
 
         else:
             eventlist.append(class_WR.events(0,paralist[2],paralist[3]))
+
 
     return eventlist
