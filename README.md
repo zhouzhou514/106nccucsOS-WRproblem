@@ -3,4 +3,5 @@
 input.py中的函式geteventlist()會回傳一個物件的list--------
 list的大小=eventlist[0].counter ---------
 TYPE=eventlist[x].showtype()--------
-TYPE為0表示該events為reader，為一表示該events為writer--------
+TYPE為 0 表示該events為reader，為 1 表示該events為writer--------
+此branch為Python3，稍後我會改為Python2.7
