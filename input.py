@@ -1,11 +1,10 @@
-#filename input.py
 import class_WR
 import random
 
 def getparameter():
     ins='f'
     while ins!='d'and ins!='s'and ins!='q':
-        ins=raw_input("-use default file, input d\n-use your parameter,input s\n-input q to exit\n")
+        ins=input("-use default file, input d\n-use your parameter,input s\n-input q to exit\n")
         if ins=='d':
             dff=open("defaultset.txt","r")
             numofevents,proportion,maxD,maxT=[int(x)for x in next(dff).split( )]
@@ -26,7 +25,6 @@ def getparameter():
 
 
 
-#main
 def geteventlist():
     paralist=getparameter()
 
