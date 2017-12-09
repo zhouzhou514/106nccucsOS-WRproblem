@@ -2,6 +2,7 @@ import threading
 import random
 import time
 import copy
+TIME_DIVISOR=1000
 
 class RWLock:
 	
@@ -55,13 +56,13 @@ class _LightSwitch:
 
 
 class Writer(threading.Thread):
-	def __init__(self, rw_lock):
+	def __init__(self, rw_lock,sleeptime,exctime):
 	
 		threading.Thread.__init__(self)
 		#self.__buffer = buffer_
 		self.__rw_lock = rw_lock
-		self.__init_sleep_time = random.randint(0,99)
-		self.__excution_time = random.randint(0,20)
+		self.__init_sleep_time = sleeptime/TIME_DIVISOR
+		self.__excution_time = exctime/TIME_DIVISOR
 		#self.__to_write = to_write
 		self.entry_time = None
 		"""Time of entry to the critical section"""
@@ -79,13 +80,13 @@ class Writer(threading.Thread):
 		self.__rw_lock.writer_release()
 
 class Reader(threading.Thread):
-	def __init__(self,rw_lock):
+	def __init__(self,rw_lock,sleeptime,exctime):
 		
 		threading.Thread.__init__(self)
 		#self.__buffer = buffer_
 		self.__rw_lock = rw_lock
-		self.__init_sleep_time = random.randint(0,20)
-		self.__excution_time= random.randint(0,20)
+		self.__init_sleep_time = sleeptime/TIME_DIVISOR
+		self.__excution_time= exctime/TIME_DIVISOR
 		self.buffer_read = None
 		"""a copy of a the buffer read while in critical section"""	
 		self.entry_time = None

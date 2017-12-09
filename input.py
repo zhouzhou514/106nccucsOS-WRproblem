@@ -8,6 +8,7 @@ def getparameter():
         if ins=='d':
             dff=open("defaultset.txt","r")
             numofevents,proportion,maxD,maxT=[int(x)for x in next(dff).split( )]
+            dff.close()
 
         elif ins=='s':
             numofevents=int(input("in put the amounts of events (1~10000)"))
