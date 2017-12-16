@@ -74,7 +74,7 @@ class Writer(threading.Thread):
 		time.sleep(self.__init_sleep_time)
 		self.__rw_lock.writer_acquire()
 		self.entry_time = time.time()
-                #print "writer"
+        #print "writer"
 		time.sleep(self.__excution_time)
 		#self.__buffer.append(self.__to_write)
 		self.exit_time = time.time()
@@ -99,12 +99,12 @@ class Reader(threading.Thread):
 		time.sleep(self.__init_sleep_time)
 		self.__rw_lock.reader_acquire()
 		self.entry_time = time.time()
-                #print"reader"
+        #print"reader"
 		time.sleep(self.__excution_time)
 		#self.buffer_read = copy.deepcopy(self.__buffer)
 		self.exit_time = time.time()
 		self.__rw_lock.reader_release()
-=======
+
 import threading
 import random
 import time
