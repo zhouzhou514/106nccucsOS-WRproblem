@@ -1,7 +1,6 @@
 import input
 import rw
 import output
-
 #main block
 
 eventlist=input.geteventlist()
