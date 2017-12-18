@@ -28,8 +28,9 @@ def getparameter():
 
 
 def geteventlist():
-    paralist=getparameter()
-
+    #paralist=getparameter()
+    paralist=UI_input.input_UI()
+    #print(paralist)
     eventlist =[]
 
     for i in range(1, paralist[0]):
