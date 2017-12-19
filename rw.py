@@ -2,6 +2,7 @@
 import threading
 import time
 import copy
+import output
 TIME_DIVISOR=1000
 
 class RWLock:
@@ -70,15 +71,16 @@ class Writer(threading.Thread):
 		"""Time of entry to the critical section"""
 		self.exit_time = None
 		"""Time of exit from the critical section"""
-
-		print('Writer:', self.id, 'is created',self.__init_sleep_time,self.__excution_time)
+		output.W_Created(self.id,self.__init_sleep_time,self.__excution_time)
 
 		
 	def run(self):
 		time.sleep(self.__init_sleep_time)
 		self.__rw_lock.writer_acquire()
 		self.entry_time = time.time()
+		output.W_Access(self.id)
 		time.sleep(self.__excution_time)
+		output.W_leave(self.id)
 		#self.__buffer.append(self.__to_write)
 		self.exit_time = time.time()
 		self.__rw_lock.writer_release()
@@ -99,7 +101,7 @@ class Reader(threading.Thread):
 		"""Time of entry to the critical section"""
 		self.exit_time = None
 		"""Time of exit from the critical section"""
-		print('Reader:', self.id, 'is created', self.__init_sleep_time, self.__excution_time)
+		output.R_Created(self.id,self.__init_sleep_time,self.__excution_time)
 
 
 	def run(self):
@@ -107,7 +109,9 @@ class Reader(threading.Thread):
 		self.__rw_lock.reader_acquire()
 		self.entry_time = time.time()
 		#print"reader"
+		output.R_Access(self.id)
 		time.sleep(self.__excution_time)
+		output.R_leave(self.id)
 		#self.buffer_read = copy.deepcopy(self.__buffer)
 		self.exit_time = time.time()
 		self.__rw_lock.reader_release()
