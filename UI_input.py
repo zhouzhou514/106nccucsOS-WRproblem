@@ -61,6 +61,7 @@ def input_UI():
     def ClickStart():
         global elist
         elist = [int(e1.get()), int(e2.get()), int(e3.get()), int(e4.get())]
+        root.destroy()
         #print(elist)
 
 #create a button

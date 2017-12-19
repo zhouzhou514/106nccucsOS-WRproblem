@@ -3,6 +3,7 @@ import threading
 import random
 import time
 import copy
+import colorsys
 TIME_DIVISOR=1000
 
 class RWLock:
@@ -57,18 +58,19 @@ class _LightSwitch:
 
 
 class Writer(threading.Thread):
-	def __init__(self, rw_lock,sleeptime,exctime):
-	
+	def __init__(self, rw_lock,sleeptime,exctime,id):
 		threading.Thread.__init__(self)
 		#self.__buffer = buffer_
 		self.__rw_lock = rw_lock
-		self.__init_sleep_time = sleeptime/TIME_DIVISOR
-		self.__excution_time = exctime/TIME_DIVISOR
+		self.__init_sleep_time = float(sleeptime)/TIME_DIVISOR
+		self.__excution_time = float(exctime)/TIME_DIVISOR
+		self.id=id
 		#self.__to_write = to_write
 		self.entry_time = None
 		"""Time of entry to the critical section"""
 		self.exit_time = None
 		"""Time of exit from the critical section"""
+		print('Writer:', self.id, 'is created',self.__init_sleep_time,self.__excution_time)
 		
 	def run(self):
 		time.sleep(self.__init_sleep_time)
@@ -81,19 +83,21 @@ class Writer(threading.Thread):
 		self.__rw_lock.writer_release()
 
 class Reader(threading.Thread):
-	def __init__(self,rw_lock,sleeptime,exctime):
+	def __init__(self,rw_lock,sleeptime,exctime,id):
 		
 		threading.Thread.__init__(self)
 		#self.__buffer = buffer_
 		self.__rw_lock = rw_lock
-		self.__init_sleep_time = sleeptime/TIME_DIVISOR
-		self.__excution_time= exctime/TIME_DIVISOR
+		self.__init_sleep_time = float(sleeptime)/TIME_DIVISOR
+		self.__excution_time= float(exctime)/TIME_DIVISOR
+		self.id=id
 		self.buffer_read = None
 		"""a copy of a the buffer read while in critical section"""	
 		self.entry_time = None
 		"""Time of entry to the critical section"""
 		self.exit_time = None
 		"""Time of exit from the critical section"""
+		print('Reader:', self.id, 'is created', self.__init_sleep_time, self.__excution_time)
 
 	def run(self):
 		time.sleep(self.__init_sleep_time)
