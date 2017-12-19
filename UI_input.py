@@ -11,16 +11,9 @@ def input_UI():
 #name the window as'Group 14'
     root.title('Group 14 12/21 RW Problem')
 #define the size of the window
-
-    root.geometry('500x250')
-
-
     root.geometry('1000x600')
-
-
 #create a label which display on the 'Group 14'window, and define its attributes
     ltopic = tk.Label(root,text='RW Problem by Group 14', bg = 'light blue',font = ('Times New Roman',14), width = 30, height = 2)
-
 
 #Create a LabelFrame for input area and log area
     lf = tk.LabelFrame(root, text='Input',font=('Tims New Roman',14))
@@ -35,7 +28,6 @@ def input_UI():
 #create scrollbar
     scrlbr = tk.Scrollbar(lf_p)
 
-#
 #Create table
     tree = ttk.Treeview(lf_p,yscrollcommand=scrlbr.set)
     tree["columns"] = ["a","b","c"]
@@ -45,8 +37,6 @@ def input_UI():
     tree.heading("a",text = 'Thread ID')
     tree.heading("b",text = 'Access Time')
     tree.heading("c",text = 'Waiting Time')
-
-#
     scrlbr.config(command=tree.yview)
 
 #open defaultset.txt, read it, split it, turn into list, and convert each list's element to int, then put them back to the original list
@@ -54,7 +44,7 @@ def input_UI():
     r = dftset.read()#type(r) is a string
     r_list = list(r.split())
     for i in range(len(r_list)):
-    	r_list[i] = int(r_list[i])
+        r_list[i] = int(r_list[i])
 
 #Create a StringVar object, and set each value as the elements of r_list
     e1t = StringVar(lf,value = r_list[0])
@@ -68,9 +58,6 @@ def input_UI():
     e3 = tk.Entry(lf,font = ('Times New Roman',12),textvariable = e3t)
     e4 = tk.Entry(lf,font = ('Times New Roman',12),textvariable = e4t)
 
-
-
-
 #arrange the locations
     ltopic.grid(row=0,column=3)
     lf.grid(columnspan=20,rowspan=20,padx=5,pady=5,ipadx=5,ipady=5)
@@ -83,13 +70,10 @@ def input_UI():
     l4.grid(row=5,column=0,sticky='W')
     e4.grid(row=5,column=1,sticky='E')
     lf_p.grid(row = 0,column=25,columnspan=55,rowspan=150,padx=5,pady=5,ipadx=5,ipady=5)
-
     tree.grid(row=0,column=25,columnspan=60)
     scrlbr.grid(row=0,column=84)
 #tree.pack(side=LEFT,fill=Y)
 #scrlbr.pack(side=RIGHT, fill=Y)
-
-
 
 
 #function of button start
@@ -101,10 +85,8 @@ def input_UI():
 #create a button
     b=tk.Button(lf,text='Start',font=('Times New Roman',12),width=10, height=1)
     b = tk.Button(lf,text='Start',font=('Times New Roman',12),width=10, height=1,command=ClickStart)
-
     b.grid(row=6,column=0)
     root.mainloop()
-
     return elist
 
 #alist=input_UI()
