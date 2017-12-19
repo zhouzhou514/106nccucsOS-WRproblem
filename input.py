@@ -33,7 +33,7 @@ def geteventlist():
     #print(paralist)
     eventlist =[]
 
-    for i in range(1, paralist[0]):
+    for i in range(0, paralist[0]):
 
         if (random.randint(0,10000))<(10000/(paralist[1]+1)):
             eventlist.append( class_WR.events(1, paralist[2], paralist[3]))

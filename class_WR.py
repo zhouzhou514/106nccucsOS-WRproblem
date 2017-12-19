@@ -4,11 +4,12 @@ import random
 class events:
     counter=0
     def __init__(self,type,delay,time):
+        events.counter += 1
         self.id=events.counter
         self.type=type      #reader=0 writer=1
         self.delay=random.randint(1,delay)
         self.time=random.randint(1,delay)
-        events.counter+=1
+
 
     def showid(self):
         return self.id

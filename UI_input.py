@@ -7,7 +7,7 @@ def input_UI():
 #name the window as'Group 14'
     root.title('Group 14 12/21 RW Problem')
 #define the size of the window
-    root.geometry('1000x800')
+    root.geometry('500x250')
 
 #create a label which display on the 'Group 14'window, and define its attributes
     ltopic = tk.Label(root,text='RW Problem by Group 14', bg = 'light blue',font = ('Times New Roman',14), width = 30, height = 2)
@@ -56,13 +56,12 @@ def input_UI():
     e4.grid(row=5,column=1,sticky='E')
 
 
-    #elist=[e1.get(),e2.get(),e3.get(),e4.get()]
+
 #function of button start
     def ClickStart():
         global elist
         elist = [int(e1.get()), int(e2.get()), int(e3.get()), int(e4.get())]
         root.destroy()
-        #print(elist)
 
 #create a button
     b=tk.Button(lf,text='Start',font=('Times New Roman',12),width=10, height=1)
