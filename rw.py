@@ -1,6 +1,5 @@
 
 import threading
-import random
 import time
 import copy
 TIME_DIVISOR=1000
@@ -71,7 +70,9 @@ class Writer(threading.Thread):
 		"""Time of entry to the critical section"""
 		self.exit_time = None
 		"""Time of exit from the critical section"""
+
 		print('Writer:', self.id, 'is created',self.__init_sleep_time,self.__excution_time)
+
 		
 	def run(self):
 		time.sleep(self.__init_sleep_time)
@@ -85,6 +86,8 @@ class Writer(threading.Thread):
 class Reader(threading.Thread):
 
 
+	def __init__(self,rw_lock,sleeptime,exctime,id):
+		threading.Thread.__init__(self)
 		#self.__buffer = buffer_
 		self.__rw_lock = rw_lock
 		self.__init_sleep_time = float(sleeptime)/TIME_DIVISOR
@@ -103,7 +106,7 @@ class Reader(threading.Thread):
 		time.sleep(self.__init_sleep_time)
 		self.__rw_lock.reader_acquire()
 		self.entry_time = time.time()
-    #print"reader"
+		#print"reader"
 		time.sleep(self.__excution_time)
 		#self.buffer_read = copy.deepcopy(self.__buffer)
 		self.exit_time = time.time()
