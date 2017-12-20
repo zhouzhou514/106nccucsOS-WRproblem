@@ -17,7 +17,6 @@ def W_leave(id):
     print '\033[0;35;40m', 'Writer:','\033[0;33;46m',id, 'has finished access resource'
 
 
-
 '''R_Created(1000)
 R_Access(3023)
 R_leave(2411)
