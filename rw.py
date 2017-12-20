@@ -85,6 +85,8 @@ class Writer(threading.Thread):
 		#self.__buffer.append(self.__to_write)
 		self.exit_time = time.time()
 		self.__rw_lock.writer_release()
+		loglist = [str('writer'), str(self.id), str(self.entry_time), str(self.__init_sleep_time),str(self.__excution_time)]
+		return loglist
 
 class Reader(threading.Thread):
 
@@ -119,4 +121,5 @@ class Reader(threading.Thread):
 		#self.buffer_read = copy.deepcopy(self.__buffer)
 		self.exit_time = time.time()
 		self.__rw_lock.reader_release()
-
+		loglist=[str('reader'),str(self.id),str(self.entry_time),str(self.__init_sleep_time),str(self.__excution_time)]
+		return loglist

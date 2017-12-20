@@ -3,15 +3,14 @@ from Tkinter import *
 import ScrolledText
 import ttk
 from ttk import Treeview
-import input
-
+import class_WR
+import random
+import rw
 
 #create a window object
 root = tk.Tk()
 #name the window as'Group 14'
 root.title('Group 14 12/21 RW Problem')
-#define the size of the window
-#root.geometry('1000x600')
 
 #create a label which display on the 'Group 14'window, and define its attributes
 ltopic = tk.Label(root,text='RW Problem by Group 14', bg = 'light blue',font = ('Times New Roman',14), width = 30, height = 2)
@@ -31,7 +30,7 @@ l4 = tk.Label(lf,text='Input the maximum access time (1~100)  ',font = ('Times N
 #create scrollbar for Log and Result table
 scrlbr = tk.Scrollbar(lf_p)
 scrRs = tk.Scrollbar(lf_o)
-#
+
 #Create table for Log
 tree = ttk.Treeview(lf_p,yscrollcommand=scrlbr.set)
 tree["columns"] = ["a","b","c","d","e"]
@@ -62,7 +61,6 @@ result.heading("D",text = 'Winner')#Reader or Writer is the winner
 scrlbr.config(command=tree.yview)
 scrRs.config(command=result.yview)
 
-
 #open defaultset.txt, read it, split it, turn into list, and convert each list's element to int, then put them back to the original list
 dftset = open('defaultset.txt')
 r = dftset.read()#type(r) is a string
@@ -70,19 +68,16 @@ r_list = list(r.split())
 for i in range(len(r_list)):
 	r_list[i] = int(r_list[i])
 
-  
 #Create a StringVar object, and set each value as the elements of r_list
 e1t = StringVar(lf,value = r_list[0])
 e2t = StringVar(lf,value = r_list[1])
 e3t = StringVar(lf,value = r_list[2])
 e4t = StringVar(lf,value = r_list[3])
-
 #Create an entry for each input, with default value in each entry
 e1 = tk.Entry(lf,font = ('Times New Roman',12),textvariable = e1t)
 e2 = tk.Entry(lf,font = ('Times New Roman',12),textvariable = e2t)
 e3 = tk.Entry(lf,font = ('Times New Roman',12),textvariable = e3t)
 e4 = tk.Entry(lf,font = ('Times New Roman',12),textvariable = e4t)
-
 
 
 #arrange the locations
@@ -112,12 +107,37 @@ result.rowconfigure(6,weight=1)
 #function of button start
 def ClickStart():
      #global elist
-     elist = [int(e1.get()), int(e2.get()), int(e3.get()), int(e4.get())]
-     input.geteventlist(elist)
+     paralist = [int(e1.get()), int(e2.get()), int(e3.get()), int(e4.get())]
+     eventlist = []
+     for i in range(0, paralist[0]):
+         if (random.randint(0, 10000)) < (10000 / (paralist[1] + 1)):
+             eventlist.append(class_WR.events(1, paralist[2], paralist[3]))
+         else:
+             eventlist.append(class_WR.events(0, paralist[2], paralist[3]))
+
+             threadlist = []
+
+     for i in range(0, eventlist[0].counter):  # create RWthreads
+         rw_lock = rw.RWLock()
+         if eventlist[i].showtype() == 1:
+             threadlist.append(rw.Writer(rw_lock, sleeptime=eventlist[i].showdelay(), exctime=eventlist[i].showtime(),id=eventlist[i].showid()))
+         else:
+             threadlist.append(rw.Reader(rw_lock, sleeptime=eventlist[i].showdelay(), exctime=eventlist[i].showtime(),id=eventlist[i].showid()))
+
+     for i in range(0, eventlist[0].counter):  # run RWthreads
+         loglist=threadlist[i].run()
+         TYPE=loglist[0]
+         ID=loglist[1]
+         ITIME=loglist[2]
+         STIME=loglist[3]
+         ETIME=loglist[4]
+         tree.insert('', i, values=(TYPE,ID,ITIME,STIME,ETIME))
     
 #create a button
 b = tk.Button(lf,text='Start',font=('Times New Roman',12),width=10, height=1,command=ClickStart)
 b.grid(row=6,column=1)
+
+
 
 
 root.mainloop()

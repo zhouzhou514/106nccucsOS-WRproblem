@@ -28,8 +28,6 @@ def getparameter():
 
 
 def geteventlist(paralist):
-
-
     eventlist =[]
 
     for i in range(0, paralist[0]):
