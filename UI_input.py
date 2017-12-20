@@ -47,7 +47,7 @@ tree.heading("d",text = 'Sleeping Time')
 tree.heading("e",text = 'Execution Time')#the time it costs to run the whole critical section
 
 #Create table for Result
-result = ttk.Treeview(lf_o,yscrollcommand=scrLog.set)
+result = ttk.Treeview(lf_o,yscrollcommand=scrRs.set)
 result["columns"] = ('A','B','C','D')
 result.column("A",width = 70,anchor = 'center')
 result.column("B",width = 70,anchor = 'center')
