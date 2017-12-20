@@ -1,6 +1,6 @@
 import class_WR
 import random
-import UI_input
+import maincircuit
 
 def getparameter():
     ins='f'
@@ -27,10 +27,9 @@ def getparameter():
 
 
 
-def geteventlist():
-    #paralist=getparameter()
-    paralist=UI_input.input_UI()
-    #print(paralist)
+def geteventlist(paralist):
+
+
     eventlist =[]
 
     for i in range(0, paralist[0]):
@@ -42,4 +41,4 @@ def geteventlist():
             eventlist.append(class_WR.events(0,paralist[2],paralist[3]))
 
 
-    return eventlist
+    maincircuit.mainblock(eventlist)

@@ -3,6 +3,7 @@ from Tkinter import *
 import ScrolledText
 import ttk
 from ttk import Treeview
+import input
 
 
 #create a window object
@@ -33,7 +34,6 @@ l4 = tk.Label(lf,text='Input the maximum access time (1~100)  ',font = ('Times N
 scrlbr = tk.Scrollbar(lf_p)
 
 
-#
 #Create table
 tree = ttk.Treeview(lf_p,yscrollcommand=scrlbr.set)
 tree["columns"] = ["a","b","c"]
@@ -85,20 +85,15 @@ tree.grid(row=0,column=25,sticky='NSEW')
 scrlbr.grid(row=0,column=84,sticky='NS')
 
 #function of button start
-<<<<<<< HEAD
-    def ClickStart():
-        global elist
-        elist = [int(e1.get()), int(e2.get()), int(e3.get()), int(e4.get())]
-=======
+
 def ClickStart():
-     global elist
+     #global elist
      elist = [int(e1.get()), int(e2.get()), int(e3.get()), int(e4.get())]
-     root.destroy()
->>>>>>> 79b676ac128ed7f20fd39e73f794acc415e14ac4
+     input.geteventlist(elist)
 
 
 #create a button
-b = tk.Button(lf,text='Start',font=('Times New Roman',12),width=10, height=1)
+b = tk.Button(lf,text='Start',font=('Times New Roman',12),width=10, height=1,command=ClickStart)
 b.grid(row=6,column=0)
 
 
