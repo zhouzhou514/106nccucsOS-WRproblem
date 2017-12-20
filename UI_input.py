@@ -80,7 +80,7 @@ def input_UI():
     def ClickStart():
         global elist
         elist = [int(e1.get()), int(e2.get()), int(e3.get()), int(e4.get())]
-        root.destroy()
+
 
 #create a button
     b=tk.Button(lf,text='Start',font=('Times New Roman',12),width=10, height=1)
