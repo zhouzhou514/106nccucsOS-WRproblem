@@ -97,5 +97,4 @@ b = tk.Button(lf,text='Start',font=('Times New Roman',12),width=10, height=1,com
 b.grid(row=6,column=0)
 
 
-
 root.mainloop()
