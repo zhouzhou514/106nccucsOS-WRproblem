@@ -73,6 +73,7 @@ class Writer(threading.Thread):
 		"""Time of exit from the critical section"""
 		output.W_Created(self.id,self.__init_sleep_time,self.__excution_time)
 
+
 		
 	def run(self):
 		time.sleep(self.__init_sleep_time)
@@ -86,6 +87,7 @@ class Writer(threading.Thread):
 		self.__rw_lock.writer_release()
 
 class Reader(threading.Thread):
+
 
 
 	def __init__(self,rw_lock,sleeptime,exctime,id):
@@ -104,10 +106,12 @@ class Reader(threading.Thread):
 		output.R_Created(self.id,self.__init_sleep_time,self.__excution_time)
 
 
+
 	def run(self):
 		time.sleep(self.__init_sleep_time)
 		self.__rw_lock.reader_acquire()
 		self.entry_time = time.time()
+
 		#print"reader"
 		output.R_Access(self.id)
 		time.sleep(self.__excution_time)
